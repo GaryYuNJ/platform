@@ -4,19 +4,19 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    minifycss = require('gulp-minify-css'),
+    connect = require('gulp-connect'),
     bower = require('gulp-bower'),
-    webserver = require('gulp-webserver'),
+    sequence = require('gulp-sequence'),
     del = require('del');
 
 var bower_source_dir = 'bower_components';
 var bower_target_dir = 'src/main/webapp/static/libs';
 
 gulp.task('bower', function() {
-    return bower().pipe(gulp.dest(bower_source_dir))
+    return bower(bower_source_dir, {});
 });
 
-gulp.task('copy-lib', function() {
+gulp.task('libs', function() {
     // jQuery
     gulp.src(bower_source_dir + '/jquery/dist/jquery.js')
         .pipe(gulp.dest(bower_target_dir + '/jquery'));
@@ -44,26 +44,6 @@ gulp.task('copy-lib', function() {
 
     gulp.src(bower_source_dir + '/jquery-validation/dist/jquery.validate.min.js')
         .pipe(gulp.dest(bower_target_dir + '/jquery-plugin'));
-
-    // underscore
-    gulp.src(bower_source_dir + '/underscore/underscore.js')
-        .pipe(gulp.dest(bower_target_dir + '/backbone'));
-
-    gulp.src(bower_source_dir + '/underscore/underscore-min.js')
-        .pipe(gulp.dest(bower_target_dir + '/backbone'));
-
-    gulp.src(bower_source_dir + '/underscore/underscore-min.map')
-        .pipe(gulp.dest(bower_target_dir + '/backbone'));
-
-    // backbone
-    gulp.src(bower_source_dir + '/backbone/backbone.js')
-        .pipe(gulp.dest(bower_target_dir + '/backbone'));
-
-    gulp.src(bower_source_dir + '/backbone/backbone-min.js')
-        .pipe(gulp.dest(bower_target_dir + '/backbone'));
-
-    gulp.src(bower_source_dir + '/backbone/backbone-min.map')
-        .pipe(gulp.dest(bower_target_dir + '/backbone'));
 
     // JsRender
     gulp.src(bower_source_dir + '/jsrender/jsrender.js')
@@ -112,26 +92,28 @@ gulp.task('copy-lib', function() {
     gulp.src(bower_source_dir + '/z-tree.v3/js/**')
         .pipe(gulp.dest(bower_target_dir + '/ztree/js'));
 });
-
 gulp.task('clean', function(cb) {
     del([
         bower_source_dir
     ], cb);
 });
 
-gulp.task('prototype', function() {
-    gulp.src("src/main/webapp/prototype/src/**.ejs")
-        .pipe(ejs({
-            msg : "Hello Gulp!"
-        }, {
-            ext : '.html'
-        }))
-        .pipe(gulp.dest("src/main/webapp/prototype/public/views"));
-
-    gulp.src('src/main/webapp/prototype/public')
-        .pipe(webserver({
-            fallback : 'index.html'
-        }));
+gulp.task('prototype-js', function() {
+    watch('public/js/**/*.js', function() {
+        gulp.src('public/js/**/*.js')
+            .pipe(uglify())
+            .pipe(gulp.dest("public/js"))
+            .pipe(connect.reload())
+    });
 });
 
-gulp.task('default', ['bower', 'copy-lib']);
+gulp.task('prototype-server', function() {
+    connect.server({
+        root : 'src/main/webapp',
+        livereload : true
+    });
+});
+
+gulp.task('prototype', ['prototype-js', 'prototype-server']);
+
+gulp.task('default', sequence('bower', 'libs'));
