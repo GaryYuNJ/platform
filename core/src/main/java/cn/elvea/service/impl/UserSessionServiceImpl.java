@@ -1,7 +1,7 @@
 package cn.elvea.service.impl;
 
 import cn.elvea.commons.persistence.repository.BaseEntityRepository;
-import cn.elvea.commons.service.jpa.BaseEntityServiceImpl;
+import cn.elvea.commons.service.jpa.BaseJpaEntityService;
 import cn.elvea.domain.UserSession;
 import cn.elvea.repository.UserSessionRepository;
 import cn.elvea.security.filter.CaptchaAuthFilter;
@@ -17,7 +17,7 @@ import java.util.Date;
 
 @Service
 @Transactional
-public class UserSessionServiceImpl extends BaseEntityServiceImpl<UserSession, Long> implements UserSessionService {
+public class UserSessionServiceImpl extends BaseJpaEntityService<UserSession, Long> implements UserSessionService {
     @Autowired
     UserSessionRepository userSessionRepository;
 

@@ -1,7 +1,7 @@
 package cn.elvea.service.impl;
 
 import cn.elvea.commons.persistence.repository.BaseEntityRepository;
-import cn.elvea.commons.service.jpa.BaseEntityServiceImpl;
+import cn.elvea.commons.service.jpa.BaseJpaEntityService;
 import cn.elvea.domain.Entity;
 import cn.elvea.repository.EntityRepository;
 import cn.elvea.service.EntityService;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class EntityServiceImpl extends BaseEntityServiceImpl<Entity, Long> implements EntityService {
+public class EntityServiceImpl extends BaseJpaEntityService<Entity, Long> implements EntityService {
     @Autowired
     EntityRepository entityRepository;
 

@@ -194,7 +194,7 @@ project("webapp") {
     apply plugin: "war"
     apply plugin: 'application'
 
-    mainClassName = "cn.elvea.ApplicationInitializer"
+    mainClassName = "cn.elvea.Initializer"
 
     springBoot {
         applyExcludeRules = false

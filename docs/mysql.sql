@@ -122,13 +122,14 @@ create table EntityPermission (
 
 /* 用户回话 */
 create table UserSession (
-    `id`             int          not null auto_increment,
-    `sessionId`      varchar(255) not null,
-    `username`       varchar(255) null,
-    `host`           varchar(255) not null,
-    `lastAccessTime` datetime,
-    `startDatetime`  datetime,
-    `endDatetime`    datetime,
+    `id`                 int          not null auto_increment,
+    `sessionId`          varchar(255) not null,
+    `username`           varchar(255) null,
+    `host`               varchar(255) not null,
+    `device`             varchar(255) not null,
+    `lastAccessDatetime` datetime,
+    `startDatetime`      datetime,
+    `endDatetime`        datetime,
     constraint PK_UserSession_id primary key (id)
 );
 

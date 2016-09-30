@@ -1,7 +1,7 @@
 package cn.elvea.service.impl;
 
 import cn.elvea.commons.persistence.repository.BaseEntityRepository;
-import cn.elvea.commons.service.jpa.BaseEntityServiceImpl;
+import cn.elvea.commons.service.jpa.BaseJpaEntityService;
 import cn.elvea.domain.Catalog;
 import cn.elvea.repository.CatalogRepository;
 import cn.elvea.service.CatalogService;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class CatalogServiceImpl extends BaseEntityServiceImpl<Catalog, Long> implements CatalogService {
+public class CatalogServiceImpl extends BaseJpaEntityService<Catalog, Long> implements CatalogService {
     @Autowired
     CatalogRepository catalogRepository;
 

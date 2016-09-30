@@ -1,7 +1,7 @@
 package cn.elvea.service.impl;
 
 import cn.elvea.commons.persistence.repository.BaseEntityRepository;
-import cn.elvea.commons.service.jpa.BaseEntityServiceImpl;
+import cn.elvea.commons.service.jpa.BaseJpaEntityService;
 import cn.elvea.domain.User;
 import cn.elvea.repository.UserRepository;
 import cn.elvea.security.SecurityUtils;
@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
 
 @Service
 @Transactional
-public class UserServiceImpl extends BaseEntityServiceImpl<User, Long> implements UserService {
+public class UserServiceImpl extends BaseJpaEntityService<User, Long> implements UserService {
     @Autowired
     private UserRepository userRepository;
 
@@ -24,7 +24,7 @@ public class UserServiceImpl extends BaseEntityServiceImpl<User, Long> implement
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByEmployeeNumber(username);
+        return userRepository.findByUsername(username);
     }
 
     @Override

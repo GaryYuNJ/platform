@@ -2,6 +2,7 @@ package cn.elvea.domain;
 
 import com.google.common.collect.Lists;
 
+import javax.persistence.Transient;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class User extends Entity {
     private String lastLoginStatus;
     private Timestamp lastLoginDatetime;
 
+    @Transient
     private List<Role> roles = Lists.newArrayList();
 
     public String getUsername() {

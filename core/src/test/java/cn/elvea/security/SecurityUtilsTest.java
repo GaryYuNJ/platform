@@ -6,13 +6,11 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.util.ByteSource;
 import org.junit.Assert;
-import org.junit.Test;
 
 public class SecurityUtilsTest {
     /**
      * 密码加密测试
      */
-    @Test
     public void encryptPasswordTest() {
         String username = "root";
         String password = "123456";
@@ -28,8 +26,8 @@ public class SecurityUtilsTest {
                 entryptedPassword, ByteSource.Util.bytes(salt), token.getUsername()
         );
 
-        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher(SecurityUtils.HASH_ALGORITHM);
-        credentialsMatcher.setHashIterations(SecurityUtils.HASH_INTERATIONS);
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher(SecurityConstants.HASH_ALGORITHM);
+        credentialsMatcher.setHashIterations(SecurityConstants.HASH_INTERATIONS);
 
         Assert.assertTrue(credentialsMatcher.doCredentialsMatch(token, info));
     }

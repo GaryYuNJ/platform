@@ -2,6 +2,8 @@ package cn.elvea.config;
 
 import cn.elvea.commons.cache.CustomCacheErronrHandler;
 import cn.elvea.commons.cache.CustomCacheResolver;
+import cn.elvea.commons.utils.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.annotation.EnableCaching;
@@ -14,6 +16,7 @@ import org.springframework.cache.interceptor.SimpleKeyGenerator;
 import org.springframework.cache.support.CompositeCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -25,6 +28,9 @@ import java.util.Set;
 @Configuration
 @EnableCaching
 public class CacheConfig implements CachingConfigurer {
+    @Autowired
+    private Environment env = null;
+
     // --------------  Cache Cofig --------------
     @Bean(name = "cacheResolver")
     @Override
@@ -77,7 +83,17 @@ public class CacheConfig implements CachingConfigurer {
 
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
-        return new JedisConnectionFactory();
+        String host = env.getProperty("redis.host", String.class, "127.0.0.1");
+        int port = env.getProperty("redis.port", Integer.class, 6379);
+        String password = env.getProperty("redis.password", String.class, "");
+
+        JedisConnectionFactory factory = new JedisConnectionFactory();
+        factory.setHostName(host);
+        factory.setPort(port);
+        if (StringUtils.isNotEmpty(password)) {
+            factory.setPassword(password);
+        }
+        return factory;
     }
 
     @Bean
