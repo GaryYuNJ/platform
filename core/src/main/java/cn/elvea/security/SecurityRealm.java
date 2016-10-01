@@ -1,6 +1,6 @@
 package cn.elvea.security;
 
-import cn.elvea.commons.utils.Encodes;
+import cn.elvea.commons.utils.EncryptUtils;
 import cn.elvea.domain.Role;
 import cn.elvea.domain.User;
 import cn.elvea.service.UserService;
@@ -60,7 +60,7 @@ public class SecurityRealm extends AuthorizingRealm {
         logger.debug("doGetAuthenticationInfo......");
         User user = userService.findByUsername(authcToken.getPrincipal().toString());
         if (user != null) {
-            byte[] salt = Encodes.decodeHex("12345678");
+            byte[] salt = EncryptUtils.decodeHex("12345678");
 
             SecurityUser securityUser = new SecurityUser();
             securityUser.setName(user.getNickname());

@@ -1,20 +1,22 @@
 package cn.elvea.security;
 
-import cn.elvea.commons.utils.Encodes;
+import cn.elvea.commons.utils.EncryptUtils;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.util.ByteSource;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class SecurityUtilsTest {
     /**
      * 密码加密测试
      */
+    @Test
     public void encryptPasswordTest() {
         String username = "root";
         String password = "123456";
-        byte[] salt = Encodes.decodeHex("12345678");
+        byte[] salt = EncryptUtils.decodeHex("12345678");
         String entryptedPassword = SecurityUtils.entryptPassword("123456", salt);
 
         System.out.println("Plain Password - " + password);

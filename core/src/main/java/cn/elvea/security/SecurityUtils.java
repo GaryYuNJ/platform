@@ -1,7 +1,6 @@
 package cn.elvea.security;
 
-import cn.elvea.commons.utils.Digests;
-import cn.elvea.commons.utils.Encodes;
+import cn.elvea.commons.utils.EncryptUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
@@ -38,19 +37,19 @@ public class SecurityUtils {
      * 对传入的明文密码进行加密
      */
     public static String entryptPassword(String plainPassword, String salt) {
-        byte[] saltByte = Encodes.decodeHex(salt);
+        byte[] saltByte = EncryptUtils.decodeHex(salt);
         return entryptPassword(plainPassword, saltByte);
     }
 
     public static String entryptPassword(String plainPassword, byte[] saltByte) {
-        byte[] hashPassword = Digests.sha1(plainPassword.getBytes(), saltByte, SecurityConstants.HASH_INTERATIONS);
-        return Encodes.encodeHex(hashPassword);
+        byte[] hashPassword = EncryptUtils.sha(plainPassword.getBytes(), saltByte, SecurityConstants.HASH_INTERATIONS);
+        return EncryptUtils.encodeHex(hashPassword);
     }
 
     /**
      * 生成一个随机的Salt,添加用户或者修改用户密码的时候,都会自动生成一个8位的随机数做为密码加密的盐
      */
     public static String generateSalt() {
-        return Encodes.encodeHex(Digests.generateSalt(SecurityConstants.SALT_SIZE));
+        return EncryptUtils.generateKey(SecurityConstants.SALT_SIZE);
     }
 }
