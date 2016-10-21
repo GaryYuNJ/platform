@@ -1,6 +1,5 @@
 package cn.elvea.service.impl;
 
-import cn.elvea.commons.persistence.repository.BaseEntityRepository;
 import cn.elvea.commons.service.jpa.BaseJpaEntityService;
 import cn.elvea.domain.UserSession;
 import cn.elvea.repository.UserSessionRepository;
@@ -8,7 +7,6 @@ import cn.elvea.security.filter.CaptchaAuthFilter;
 import cn.elvea.service.UserSessionService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SimpleSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,17 +15,9 @@ import java.util.Date;
 
 @Service
 @Transactional
-public class UserSessionServiceImpl extends BaseJpaEntityService<UserSession, Long> implements UserSessionService {
-    @Autowired
-    UserSessionRepository userSessionRepository;
-
-    @Override
-    public BaseEntityRepository<UserSession, Long> getEntityRepository() {
-        return userSessionRepository;
-    }
-
+public class UserSessionServiceImpl extends BaseJpaEntityService<UserSession, Long, UserSessionRepository> implements UserSessionService {
     public Session findBySessionId(Serializable sessionId) {
-        UserSession userSession = userSessionRepository.findBySessionId(sessionId);
+        UserSession userSession = repository.findBySessionId(sessionId);
         return coverUserSessionToSession(userSession);
     }
 
@@ -38,31 +28,31 @@ public class UserSessionServiceImpl extends BaseJpaEntityService<UserSession, Lo
                 String username = (String) session.getAttribute(CaptchaAuthFilter.Shiro_Session_Username_Key);
                 userSession.setUsername(username);
             }
-            userSessionRepository.save(userSession);
+            repository.save(userSession);
         }
     }
 
     public void deleteUserSession(Session session) {
-        UserSession userSession = userSessionRepository.findBySessionId(String.valueOf(session.getId()));
+        UserSession userSession = repository.findBySessionId(String.valueOf(session.getId()));
         if (userSession != null) {
             if (session.getAttribute(CaptchaAuthFilter.Shiro_Session_Username_Key) != null) {
                 String username = (String) session.getAttribute(CaptchaAuthFilter.Shiro_Session_Username_Key);
                 userSession.setUsername(username);
             }
             userSession.setEndDatetime(new Date());
-            userSessionRepository.save(userSession);
+            repository.save(userSession);
         }
     }
 
     public void updateUserSession(Session session) {
-        UserSession userSession = userSessionRepository.findBySessionId(String.valueOf(session.getId()));
+        UserSession userSession = repository.findBySessionId(String.valueOf(session.getId()));
         if (userSession != null) {
             if (session.getAttribute(CaptchaAuthFilter.Shiro_Session_Username_Key) != null) {
                 String username = (String) session.getAttribute(CaptchaAuthFilter.Shiro_Session_Username_Key);
                 userSession.setUsername(username);
             }
             userSession.setLastAccessDatetime(new Date());
-            userSessionRepository.save(userSession);
+            repository.save(userSession);
         }
     }
 

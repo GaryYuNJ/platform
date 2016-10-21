@@ -38,7 +38,7 @@ allprojects {
         hibernateVersion = '5.2.3.Final'
 
         commonsIoVersion = '2.5'
-        commonsLangVersion = '3.4'
+        commonsLangVersion = '3.5'
         commonsCodecVersion = '1.10'
         commonsFileuploadVersion = '1.3.2'
         commonsBeanutilsVersion = '1.9.3'

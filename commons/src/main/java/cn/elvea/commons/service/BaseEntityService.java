@@ -1,6 +1,7 @@
 package cn.elvea.commons.service;
 
 import cn.elvea.commons.domain.IdEntity;
+import cn.elvea.commons.web.RequestContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,4 +22,6 @@ public interface BaseEntityService<T extends IdEntity, PK extends Serializable> 
     T get(PK id);
 
     Page<T> findAll(Pageable pageable);
+
+    Page<T> search(RequestContext request, Pageable pageable);
 }

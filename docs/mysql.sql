@@ -5,10 +5,6 @@ create database if not exists platform
     default character set utf8mb4
     default collate utf8mb4_general_ci;
 
-grant all privileges on test.* to 'test'@'localhost'
-identified by 'test'
-with grant option;
-
 use platform;
 
 /* 实体表 */

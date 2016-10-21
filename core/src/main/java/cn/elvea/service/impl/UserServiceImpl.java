@@ -1,30 +1,20 @@
 package cn.elvea.service.impl;
 
-import cn.elvea.commons.persistence.repository.BaseEntityRepository;
 import cn.elvea.commons.service.jpa.BaseJpaEntityService;
 import cn.elvea.domain.User;
 import cn.elvea.repository.UserRepository;
 import cn.elvea.security.SecurityUtils;
 import cn.elvea.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 @Service
 @Transactional
-public class UserServiceImpl extends BaseJpaEntityService<User, Long> implements UserService {
-    @Autowired
-    private UserRepository userRepository;
-
-    @Override
-    protected BaseEntityRepository<User, Long> getEntityRepository() {
-        return this.userRepository;
-    }
-
+public class UserServiceImpl extends BaseJpaEntityService<User, Long, UserRepository> implements UserService {
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return repository.findByUsername(username);
     }
 
     @Override
