@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.4.1.RELEASE'
+        springBootVersion = '1.4.2.RELEASE'
         springDependencyManagementPluginVersion = '0.6.1.RELEASE'
     }
 
@@ -24,18 +24,19 @@ allprojects {
     }
 
     ext {
-        springBootVersion = '1.4.1.RELEASE'
+        springBootVersion = '1.4.2.RELEASE'
 
         assertjVersion = '3.4.1'
         sitemeshVersion = '3.0.1'
-        guavaVersion = '19.0'
+        guavaVersion = '20.0'
         shiroVersion = '1.3.2'
-        druidVersion = '1.0.26'
-        okHttpVersion = '3.4.1'
+        druidVersion = '1.0.27'
+        okHttpVersion = '3.5.0'
         mybatisVersion = '3.4.1'
         mybatisSpringVersion = '1.3.0'
-        mybatisSpringBootVersion = '1.2.0'
-        hibernateVersion = '5.2.3.Final'
+        mybatisSpringBootVersion = '1.1.1'
+        hibernateVersion = '5.2.5.Final'
+        hibernateValidatorVersion = '5.3.3.Final'
 
         commonsIoVersion = '2.5'
         commonsLangVersion = '3.5'
@@ -50,20 +51,21 @@ allprojects {
     }
 
     // 覆盖spring-boot-dependencies的版本定义,保持最新版本
-    ext['spring.version'] = '4.3.3.RELEASE'
+    ext['spring.version'] = '4.3.4.RELEASE'
     ext['spring-session.version'] = '1.2.2.RELEASE'
-    ext['spring-security.version'] = '4.1.3.RELEASE'
-    ext['spring-data-releasetrain.version'] = 'Hopper-SR3'
+    ext['spring-security.version'] = '4.2.0.RELEASE'
+    ext['spring-data-releasetrain.version'] = 'Hopper-SR5'
     ext['hibernate.version'] = "${hibernateVersion}"
-    ext['tomcat.version'] = '8.5.6'
+    ext['hibernate-validator.version'] = "${hibernateValidatorVersion}"
+    ext['tomcat.version'] = '8.5.8'
     ext['mysql.version'] = '5.1.40'
     ext['slf4j.version'] = '1.7.21'
     ext['log4j2.version'] = '2.7'
     ext['jackson.version'] = '2.8.4'
     ext['jedis.version'] = '2.9.0'
-    ext['jersey.version'] = '2.23.2'
-    ext['ehcache.version'] = '2.10.2.2.21'
-    ext['joda-time.version'] = '2.9.4'
+    ext['jersey.version'] = '2.24.1'
+    ext['ehcache.version'] = '2.10.3'
+    ext['joda-time.version'] = '2.9.6'
     ext['javassist.version'] = '3.21.0-GA'
     // 覆盖spring-boot-dependencies的版本定义,保持最新版本
 

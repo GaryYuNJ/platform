@@ -7,13 +7,13 @@
         "jquery-ui" : "v1.12.1",
         "jquery-validation" : "1.15.0",
         "jquery-form" : "3.51",
-        "jsrender" : "~v0.9.80",
+        "jsrender" : "~v0.9.83",
         "bootstrap" : "~3.3.7",
         "bootstrap-table" : "1.10.1",
         "bootstrap-switch" : "3.3.2",
         "bootstrap-select" : "1.9.3",
         "smalot-bootstrap-datetimepicker" : "2.3.8",
-        "font-awesome" : "4.6.3"
+        "font-awesome" : "4.7.0"
     },
     "devDependencies" : {}
 }

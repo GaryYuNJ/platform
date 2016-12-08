@@ -8,76 +8,76 @@ create database if not exists platform
 use platform;
 
 /* 实体表 */
-create table Entity (
+create table entity (
     `id`        int          not null auto_increment,
     `uid`       varchar(150) not null,
     `source`    varchar(50)  not null,
     `type`      varchar(50)  not null,
-    `createdAt` datetime,
-    `createdBy` int,
-    `updatedAt` datetime,
-    `updatedBy` int,
-    `deletedAt` datetime,
-    `deletedBy` int,
-    constraint PK_Entity_id primary key (id)
+    `createdat` datetime,
+    `createdby` int,
+    `updatedat` datetime,
+    `updatedby` int,
+    `deletedat` datetime,
+    `deletedby` int,
+    constraint pk_entity_id primary key (id)
 );
 
-create table EntityRelation (
+create table entityrelation (
     `id`        int not null auto_increment,
-    `parentId`  int not null,
-    `childId`   int not null,
-    `parentInd` int not null,
+    `parentid`  int not null,
+    `childid`   int not null,
+    `parentind` int not null,
     `level`     int not null,
     `type`      varchar(50),
-    `createdAt` datetime,
-    `createdBy` int,
-    constraint FK_EntityRelation_parentId foreign key (parentId) references Entity (id),
-    constraint FK_EntityRelation_childId foreign key (childId) references Entity (id),
-    constraint PK_EntityRelation_id primary key (id)
+    `createdat` datetime,
+    `createdby` int,
+    constraint fk_entityrelation_parentid foreign key (parentid) references entity (id),
+    constraint fk_entityrelation_childid foreign key (childid) references entity (id),
+    constraint pk_entityrelation_id primary key (id)
 );
 
 /* 角色表 */
-create table Role (
+create table role (
     `id`          int          not null   auto_increment,
     `code`        varchar(150) not null,
     `title`       varchar(150) not null,
     `description` varchar(255),
-    constraint FK_Role_id foreign key (id) references Entity (id),
-    constraint PK_Role_id primary key (id)
+    constraint fk_role_id foreign key (id) references entity (id),
+    constraint pk_role_id primary key (id)
 );
 
 /* 组织表 */
-create table Organization (
+create table organization (
     `id`          int          not null,
     `code`        varchar(150) not null,
     `title`       varchar(150) not null,
     `description` varchar(255),
-    constraint FK_Organization_id foreign key (id) references Entity (id),
-    constraint PK_Organization_id primary key (id)
+    constraint fk_organization_id foreign key (id) references entity (id),
+    constraint pk_organization_id primary key (id)
 );
 
 /* 部门表 */
-create table Department (
+create table department (
     `id`          int          not null,
     `code`        varchar(150) not null,
     `title`       varchar(150) not null,
     `description` varchar(255),
-    constraint FK_Department_id foreign key (id) references Entity (id),
-    constraint PK_Department_id primary key (id)
+    constraint fk_department_id foreign key (id) references entity (id),
+    constraint pk_department_id primary key (id)
 );
 
 /* 岗位表 */
-create table Position (
+create table position (
     `id`          int          not null,
     `code`        varchar(150) not null,
     `title`       varchar(150) not null,
     `description` varchar(255),
-    constraint FK_Position_id foreign key (id) references Entity (id),
-    constraint PK_Position_id primary key (id)
+    constraint fk_position_id foreign key (id) references entity (id),
+    constraint pk_position_id primary key (id)
 );
 
 /* 用户表 */
-create table User (
+create table user (
     `id`                int          not null,
     `username`          varchar(50)  not null,
     `email`             varchar(150) not null,
@@ -89,149 +89,149 @@ create table User (
     `description`       varchar(255),
     `status`            varchar(50),
     `source`            varchar(50),
-    `lastLoginStatus`   varchar(50),
-    `lastLoginDatetime` datetime,
-    constraint FK_User_id foreign key (id) references Entity (id),
-    constraint PK_User_id primary key (id)
+    `lastloginstatus`   varchar(50),
+    `lastlogindatetime` datetime,
+    constraint fk_user_id foreign key (id) references entity (id),
+    constraint pk_user_id primary key (id)
 );
 
 /* 权限表 */
-create table Permission (
+create table permission (
     `id`          int not null auto_increment,
     `code`        varchar(255),
     `title`       varchar(255),
     `description` varchar(255),
-    constraint PK_Permission_id primary key (id)
+    constraint pk_permission_id primary key (id)
 );
 
 /* 实体-权限关联表 */
-create table EntityPermission (
+create table entitypermission (
     `id`           int not null auto_increment,
-    `entityId`     int not null,
-    `permissionId` int not null,
-    `createdAt`    datetime,
-    `createdBy`    int,
-    constraint FK_EntityPermission_entityId foreign key (entityId) references Entity (id),
-    constraint FK_EntityPermission_permissionId foreign key (permissionId) references Permission (id),
-    constraint PK_EntityPermission_id primary key (id)
+    `entityid`     int not null,
+    `permissionid` int not null,
+    `createdat`    datetime,
+    `createdby`    int,
+    constraint fk_entitypermission_entityid foreign key (entityid) references entity (id),
+    constraint fk_entitypermission_permissionid foreign key (permissionid) references permission (id),
+    constraint pk_entitypermission_id primary key (id)
 );
 
 /* 用户回话 */
-create table UserSession (
+create table usersession (
     `id`                 int          not null auto_increment,
-    `sessionId`          varchar(255) not null,
+    `sessionid`          varchar(255) not null,
     `username`           varchar(255) null,
     `host`               varchar(255) not null,
     `device`             varchar(255) not null,
-    `lastAccessDatetime` datetime,
-    `startDatetime`      datetime,
-    `endDatetime`        datetime,
-    constraint PK_UserSession_id primary key (id)
+    `lastaccessdatetime` datetime,
+    `startdatetime`      datetime,
+    `enddatetime`        datetime,
+    constraint pk_usersession_id primary key (id)
 );
 
 /* 字典 */
-create table Dict (
+create table dict (
     `id`          int          not null auto_increment,
     `code`        varchar(255) not null,
     `name`        varchar(255) not null,
     `description` varchar(255) not null,
-    `createdAt`   datetime,
-    `createdBy`   int,
-    `updatedAt`   datetime,
-    `updatedBy`   int,
-    constraint PK_Dict_id primary key (id)
+    `createdat`   datetime,
+    `createdby`   int,
+    `updatedat`   datetime,
+    `updatedby`   int,
+    constraint pk_dict_id primary key (id)
 );
 
 /* 字典明细 */
-create table DictItem (
+create table dictitem (
     `id`          int          not null auto_increment,
-    `dictId`      int          not null,
+    `dictid`      int          not null,
     `key`         varchar(255) not null,
     `value`       varchar(255) not null,
     `description` varchar(255) not null,
-    `createdAt`   datetime,
-    `createdBy`   int,
-    `updatedAt`   datetime,
-    `updatedBy`   int,
-    constraint FK_DictItem_dictId foreign key (dictId) references Dict (id),
-    constraint PK_DictItem_id primary key (id)
+    `createdat`   datetime,
+    `createdby`   int,
+    `updatedat`   datetime,
+    `updatedby`   int,
+    constraint fk_dictitem_dictid foreign key (dictid) references dict (id),
+    constraint pk_dictitem_id primary key (id)
 );
 
 /* 上传附件表 */
-create table Attachment (
+create table attachment (
     `id`          int          not null auto_increment,
     `uuid`        varchar(255) not null,
     `filename`    varchar(255) null,
     `description` varchar(255) not null,
-    `createdAt`   datetime,
-    `createdBy`   int,
-    `updatedAt`   datetime,
-    `updatedBy`   int,
-    constraint PK_Attachment_id primary key (id)
+    `createdat`   datetime,
+    `createdby`   int,
+    `updatedat`   datetime,
+    `updatedby`   int,
+    constraint pk_attachment_id primary key (id)
 );
 
 /* 目录 */
-create table Catalog (
+create table catalog (
     `id`          int          not null auto_increment,
     `code`        varchar(255) not null,
     `title`       varchar(255) null,
     `description` varchar(255) not null,
     `type`        varchar(255) not null,
-    `createdAt`   datetime,
-    `createdBy`   int,
-    `updatedAt`   datetime,
-    `updatedBy`   int,
-    constraint PK_Catalog_id primary key (id)
+    `createdat`   datetime,
+    `createdby`   int,
+    `updatedat`   datetime,
+    `updatedby`   int,
+    constraint pk_catalog_id primary key (id)
 );
 
-create table CatalogRelation (
+create table catalogrelation (
     `id`        int not null auto_increment,
-    `parentId`  int not null,
-    `childId`   int not null,
-    `parentInd` int not null,
+    `parentid`  int not null,
+    `childid`   int not null,
+    `parentind` int not null,
     `level`     int not null,
-    `createdAt` datetime,
-    `createdBy` int,
-    constraint FK_CatalogRelation_parentId foreign key (parentId) references Catalog (id),
-    constraint FK_CatalogRelation_childId foreign key (childId) references Catalog (id),
-    constraint PK_CatalogRelation_id primary key (id)
+    `createdat` datetime,
+    `createdby` int,
+    constraint fk_catalogrelation_parentid foreign key (parentid) references catalog (id),
+    constraint fk_catalogrelation_childid foreign key (childid) references catalog (id),
+    constraint pk_catalogrelation_id primary key (id)
 );
 
-create table CatalogAccess (
+create table catalogaccess (
     `id`             int         not null auto_increment,
-    `accessType`     varchar(50) not null,
-    `accessRoleId`   int         not null,
-    `accessEntityId` int         not null,
-    `createdAt`      datetime,
-    `createdBy`      int,
-    constraint FK_CatalogAccess_accessRoleId foreign key (accessRoleId) references Entity (id),
-    constraint FK_CatalogAccess_accessEntityId foreign key (accessEntityId) references Entity (id),
-    constraint PK_CatalogAccess_id primary key (id)
+    `accesstype`     varchar(50) not null,
+    `accessroleid`   int         not null,
+    `accessentityid` int         not null,
+    `createdat`      datetime,
+    `createdby`      int,
+    constraint fk_catalogaccess_accessroleid foreign key (accessroleid) references entity (id),
+    constraint fk_catalogaccess_accessentityid foreign key (accessentityid) references entity (id),
+    constraint pk_catalogaccess_id primary key (id)
 );
 
 /* 资源表 */
-create table Resource (
+create table resource (
     `id`          int not null auto_increment,
     `code`        varchar(255),
     `title`       varchar(255),
     `description` varchar(255),
     `type`        varchar(255),
-    `createdAt`   datetime,
-    `createdBy`   int,
-    `updatedAt`   datetime,
-    `updatedBy`   int,
-    constraint PK_Resources_id primary key (id)
+    `createdat`   datetime,
+    `createdby`   int,
+    `updatedat`   datetime,
+    `updatedby`   int,
+    constraint pk_resources_id primary key (id)
 );
 
-create table ResourceAccess (
+create table resourceaccess (
     `id`             int         not null auto_increment,
-    `accessType`     varchar(50) not null,
-    `accessRoleId`   int         not null,
-    `accessEntityId` int         not null,
-    `createdAt`      datetime,
-    `createdBy`      int,
-    constraint FK_ResourceAccess_accessRoleId foreign key (accessRoleId) references Entity (id),
-    constraint FK_ResourceAccess_accessEntityId foreign key (accessEntityId) references Entity (id),
-    constraint PK_ResourceAccess_id primary key (id)
+    `accesstype`     varchar(50) not null,
+    `accessroleid`   int         not null,
+    `accessentityid` int         not null,
+    `createdat`      datetime,
+    `createdby`      int,
+    constraint fk_resourceaccess_accessroleid foreign key (accessroleid) references entity (id),
+    constraint fk_resourceaccess_accessentityid foreign key (accessentityid) references entity (id),
+    constraint pk_resourceaccess_id primary key (id)
 );
 
