@@ -7,31 +7,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class Application {
     // 应用是否启用调试模式
-    public static boolean DEBUG = false;
+    private boolean debug = false;
 
-    //
-    private static Environment env = null;
+    // 系统环境变量
+    private Environment env = null;
 
     @Autowired
     public Application(Environment env) {
-        Application.env = env;
+        this.env = env;
 
-        DEBUG = getProperty("app.debug", Boolean.class, false);
+        debug = getProperty("app.debug", Boolean.class, false);
     }
 
-    public static String getProperty(String key) {
+    // 获取当前系统是否是调试模式
+    public boolean isDebug() {
+        return debug;
+    }
+
+    public String getProperty(String key) {
         return env.getProperty(key);
     }
 
-    public static String getProperty(String key, String defaultValue) {
+    public String getProperty(String key, String defaultValue) {
         return env.getProperty(key, defaultValue);
     }
 
-    public static <T> T getProperty(String key, Class<T> clazz) {
+    public <T> T getProperty(String key, Class<T> clazz) {
         return env.getProperty(key, clazz);
     }
 
-    public static <T> T getProperty(String key, Class<T> clazz, T defaultValue) {
+    public <T> T getProperty(String key, Class<T> clazz, T defaultValue) {
         return env.getProperty(key, clazz, defaultValue);
     }
 }

@@ -5,6 +5,9 @@ buildscript {
     }
 
     repositories {
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public"
+        }
         mavenLocal()
         mavenCentral()
         jcenter()
@@ -18,6 +21,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public"
+        }
         mavenLocal()
         mavenCentral()
         jcenter()
@@ -29,14 +35,13 @@ allprojects {
         assertjVersion = '3.4.1'
         sitemeshVersion = '3.0.1'
         guavaVersion = '20.0'
-        shiroVersion = '1.3.2'
+        shiroVersion = '1.4.0-RC2'
         druidVersion = '1.0.27'
         okHttpVersion = '3.5.0'
         mybatisVersion = '3.4.1'
         mybatisSpringVersion = '1.3.0'
         mybatisSpringBootVersion = '1.1.1'
         mybatisGeneratorVersion = '1.3.5'
-        hibernateValidatorVersion = '5.3.3.Final'
 
         commonsIoVersion = '2.5'
         commonsLangVersion = '3.5'
@@ -55,8 +60,7 @@ allprojects {
     ext['spring-session.version'] = '1.2.2.RELEASE'
     ext['spring-security.version'] = '4.2.0.RELEASE'
     ext['spring-data-releasetrain.version'] = 'Hopper-SR5'
-    ext['hibernate-validator.version'] = "${hibernateValidatorVersion}"
-    ext['tomcat.version'] = '8.5.8'
+    ext['hibernate-validator.version'] = "5.3.4.Final"
     ext['mysql.version'] = '5.1.40'
     ext['slf4j.version'] = '1.7.21'
     ext['log4j2.version'] = '2.7'
@@ -66,6 +70,9 @@ allprojects {
     ext['ehcache.version'] = '2.10.3'
     ext['joda-time.version'] = '2.9.6'
     ext['javassist.version'] = '3.21.0-GA'
+    // server
+    ext['tomcat.version'] = '8.5.8'
+    ext['jetty.version'] = '9.3.14.v20161028'
     // 覆盖spring-boot-dependencies的版本定义,保持最新版本
 
     apply plugin: 'io.spring.dependency-management'
@@ -100,8 +107,9 @@ project("webapp") {
     description = "Platform"
     version = "0.0.1"
 
-    apply plugin: 'spring-boot'
-    apply plugin: "war"
+    apply plugin: 'java'
+    apply plugin: 'war'
+    apply plugin: 'org.springframework.boot'
     apply plugin: 'application'
 
     mainClassName = "cn.elvea.Initializer"
@@ -115,17 +123,25 @@ project("webapp") {
     }
 
     dependencies {
+        // Spring Boot & Spring Session
+        compile("org.springframework.boot:spring-boot-starter-jdbc")
         compile("org.springframework.boot:spring-boot-starter-web")
         compile("org.springframework.boot:spring-boot-starter-log4j2")
-        compile("org.springframework.boot:spring-boot-starter-redis")
+        compile("org.springframework.boot:spring-boot-starter-data-redis")
+        compile("org.springframework.boot:spring-boot-starter-aop")
         compile("org.springframework.session:spring-session")
 
-        // commons
+        // Apache Commons
         compile("org.apache.commons:commons-lang3:${commonsLangVersion}")
         compile("commons-fileupload:commons-fileupload:${commonsFileuploadVersion}")
         compile("commons-io:commons-io:${commonsIoVersion}")
         compile("commons-beanutils:commons-beanutils:${commonsBeanutilsVersion}")
         compile("commons-codec:commons-codec:${commonsCodecVersion}")
+
+        // Database & DataSource
+        compile("mysql:mysql-connector-java")
+        compile("redis.clients:jedis")
+        compile("com.alibaba:druid:${druidVersion}")
 
         // 3rd party
         compile("com.fasterxml.jackson.core:jackson-core")
@@ -133,19 +149,18 @@ project("webapp") {
         compile("com.fasterxml.jackson.core:jackson-databind")
         compile("net.sf.ehcache:ehcache")
         compile("joda-time:joda-time")
-        compile("net.sf.ehcache:ehcache")
-        compile("joda-time:joda-time")
-        compile("mysql:mysql-connector-java")
-        compile("redis.clients:jedis")
+        compile("com.squareup.okhttp3:okhttp:${okHttpVersion}")
+        compile("org.sitemesh:sitemesh:${sitemeshVersion}")
+        compile("com.google.guava:guava:${guavaVersion}")
+
+        // Shrio
         compile("org.apache.shiro:shiro-spring:${shiroVersion}")
         compile("org.apache.shiro:shiro-web:${shiroVersion}")
-        compile("org.apache.shiro:shiro-ehcache:${shiroVersion}")
+
+        // MyBatis
         compile("org.mybatis:mybatis:${mybatisVersion}")
         compile("org.mybatis:mybatis-spring:${mybatisSpringVersion}")
         compile("org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}")
-        compile("com.alibaba:druid:${druidVersion}")
-        compile("org.sitemesh:sitemesh:${sitemeshVersion}")
-        compile("com.google.guava:guava:${guavaVersion}")
 
         // javax
         compile("javax.servlet:jstl:${javaxJstlApiVersion}")
@@ -153,8 +168,10 @@ project("webapp") {
         providedCompile("javax.servlet.jsp:javax.servlet.jsp-api:${javaxJspApiVersion}")
 
         // tomcat
-        providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-        providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
+        // providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+        // providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
+        // jetty
+        compile('org.springframework.boot:spring-boot-starter-jetty')
 
         // test
         testCompile("org.springframework.boot:spring-boot-starter-test")

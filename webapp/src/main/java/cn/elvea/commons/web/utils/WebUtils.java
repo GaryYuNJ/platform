@@ -1,4 +1,6 @@
-package cn.elvea.commons.utils;
+package cn.elvea.commons.web.utils;
+
+import cn.elvea.commons.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;

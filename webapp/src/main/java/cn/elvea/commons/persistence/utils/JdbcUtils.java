@@ -1,4 +1,4 @@
-package cn.elvea.commons.utils;
+package cn.elvea.commons.persistence.utils;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;

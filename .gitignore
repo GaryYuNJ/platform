@@ -6,4 +6,4 @@
 /webapp/bower_components
 /webapp/node_modules
 /webapp/src/main/webapp/static/libs
-/webapp/build
+/*/build
