@@ -8,7 +8,7 @@ public class SecurityUser implements Serializable {
     private String username;
     // 用户全名
     private String name;
-    // 用户来源,用来区分用户是平台创建或者是同步过来的,某些情况下,同步的用户的登录验证可能会是其他的验证方式
+    // 登录来源
     private String source;
 
     public SecurityUser() {

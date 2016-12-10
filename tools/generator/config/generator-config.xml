@@ -4,37 +4,23 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip"/>
+    <context id="Mysql" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="${database.driver}"
+                        connectionURL="${database.url}"
+                        userId="${database.user}" password="${database.password}"/>
 
-    <context id="DB2Tables" targetRuntime="MyBatis3">
-        <jdbcConnection driverClass="COM.ibm.db2.jdbc.app.DB2Driver"
-                        connectionURL="jdbc:db2:TEST"
-                        userId="db2admin" password="db2admin">
-        </jdbcConnection>
+        <javaModelGenerator targetPackage="${model.package}"
+                            targetProject="${generated.source.dir}"/>
 
-        <javaTypeResolver>
-            <property name="forceBigDecimals" value="false"/>
-        </javaTypeResolver>
+        <sqlMapGenerator targetPackage="${sql.mapper.package}"
+                         targetProject="${generated.source.dir}"/>
 
-        <javaModelGenerator targetPackage="test.model" targetProject="\MBGTestProject\src">
-            <property name="enableSubPackages" value="true"/>
-            <property name="trimStrings" value="true"/>
-        </javaModelGenerator>
+        <javaClientGenerator targetPackage="${mapper.package}"
+                             targetProject="${generated.source.dir}"
+                             type="XMLMAPPER"/>
 
-        <sqlMapGenerator targetPackage="test.xml" targetProject="\MBGTestProject\src">
-            <property name="enableSubPackages" value="true"/>
-        </sqlMapGenerator>
-
-        <javaClientGenerator type="XMLMAPPER" targetPackage="test.dao" targetProject="\MBGTestProject\src">
-            <property name="enableSubPackages" value="true"/>
-        </javaClientGenerator>
-
-        <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="ID" sqlStatement="DB2" identity="true"/>
-            <columnOverride column="DATE_FIELD" property="startDate"/>
-            <ignoreColumn column="FRED"/>
-            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR"/>
+        <table tableName="%">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>

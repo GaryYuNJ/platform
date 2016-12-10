@@ -1,15 +1,19 @@
 package cn.elvea.modules.core.entity;
 
-import cn.elvea.commons.domain.IdEntity;
 import com.google.common.collect.Lists;
 
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.List;
 
-public class User extends IdEntity {
+@Table(name = "sys_user")
+public class User extends Entity {
     // 用户名
     private String username;
     // 邮箱
     private String email;
+    // 手机
+    private String mobile;
     // 昵称
     private String nickname;
     // 全名
@@ -18,7 +22,12 @@ public class User extends IdEntity {
     private String password;
     // 加密盐
     private String salt;
+    // 来源
+    private String lastLoginStatus;
+    // 来源
+    private String lastLoginDatetime;
     // 用户角色
+    @Transient
     private List<Role> roles = Lists.newArrayList();
 
     public String getUsername() {
@@ -35,6 +44,14 @@ public class User extends IdEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getNickname() {
@@ -67,6 +84,22 @@ public class User extends IdEntity {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public String getLastLoginStatus() {
+        return lastLoginStatus;
+    }
+
+    public void setLastLoginStatus(String lastLoginStatus) {
+        this.lastLoginStatus = lastLoginStatus;
+    }
+
+    public String getLastLoginDatetime() {
+        return lastLoginDatetime;
+    }
+
+    public void setLastLoginDatetime(String lastLoginDatetime) {
+        this.lastLoginDatetime = lastLoginDatetime;
     }
 
     public List<Role> getRoles() {

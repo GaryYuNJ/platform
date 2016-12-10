@@ -11,7 +11,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class BaseTest {
+public abstract class BaseTest {
     protected MockMvc mockMvc;
 
     @Autowired

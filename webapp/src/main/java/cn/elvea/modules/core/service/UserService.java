@@ -1,10 +1,12 @@
 package cn.elvea.modules.core.service;
 
+import cn.elvea.commons.service.BaseEntityService;
 import cn.elvea.modules.core.entity.User;
+import cn.elvea.modules.core.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService extends BaseEntityService<UserMapper, User> {
     public User findByUsername(String username) {
         return null;
     }

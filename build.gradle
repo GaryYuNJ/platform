@@ -42,6 +42,7 @@ allprojects {
         mybatisSpringVersion = '1.3.0'
         mybatisSpringBootVersion = '1.1.1'
         mybatisGeneratorVersion = '1.3.5'
+        mybatisMapperVersion = '3.3.9'
 
         commonsIoVersion = '2.5'
         commonsLangVersion = '3.5'
@@ -64,14 +65,14 @@ allprojects {
     ext['mysql.version'] = '5.1.40'
     ext['slf4j.version'] = '1.7.21'
     ext['log4j2.version'] = '2.7'
-    ext['jackson.version'] = '2.8.4'
+    ext['jackson.version'] = '2.8.5'
     ext['jedis.version'] = '2.9.0'
     ext['jersey.version'] = '2.24.1'
     ext['ehcache.version'] = '2.10.3'
     ext['joda-time.version'] = '2.9.6'
     ext['javassist.version'] = '3.21.0-GA'
     // server
-    ext['tomcat.version'] = '8.5.8'
+    ext['tomcat.version'] = '8.5.9'
     ext['jetty.version'] = '9.3.14.v20161028'
     // 覆盖spring-boot-dependencies的版本定义,保持最新版本
 
@@ -160,6 +161,7 @@ project("webapp") {
         // MyBatis
         compile("org.mybatis:mybatis:${mybatisVersion}")
         compile("org.mybatis:mybatis-spring:${mybatisSpringVersion}")
+        compile("tk.mybatis:mapper:${mybatisMapperVersion}")
         compile("org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}")
 
         // javax

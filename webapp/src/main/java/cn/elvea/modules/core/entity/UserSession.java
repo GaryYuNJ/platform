@@ -2,15 +2,26 @@ package cn.elvea.modules.core.entity;
 
 import cn.elvea.commons.domain.IdEntity;
 
+import javax.persistence.Table;
 import java.util.Date;
 
+@Table(name = "sys_entity")
 public class UserSession extends IdEntity {
+    // 会话ID
     private String sessionId;
+    // 实体ID
+    private String entityId;
+    // 用户名
     private String username;
+    // 登录主机
     private String host;
+    // 登录设备
     private String device;
+    // 最后访问时间
     private Date lastAccessDatetime;
+    // 开始时间
     private Date startDatetime;
+    // 结束时间
     private Date endDatetime;
 
     public String getSessionId() {
@@ -19,6 +30,14 @@ public class UserSession extends IdEntity {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(String entityId) {
+        this.entityId = entityId;
     }
 
     public String getUsername() {

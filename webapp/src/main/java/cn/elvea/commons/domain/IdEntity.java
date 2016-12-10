@@ -1,8 +1,10 @@
 package cn.elvea.commons.domain;
 
+import javax.persistence.Id;
 import java.io.Serializable;
 
 public class IdEntity implements Serializable {
+    @Id
     private Long id;
 
     public Long getId() {

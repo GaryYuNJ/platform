@@ -1,12 +1,15 @@
 package cn.elvea.modules.core.entity;
 
-import cn.elvea.commons.domain.IdEntity;
+import javax.persistence.Table;
 
-public class Department extends IdEntity {
+@Table(name = "sys_department")
+public class Department extends Entity {
     // 部门编号
     private String code;
-    // 部门名称
+    // 部门标题
     private String title;
+    // 部门描述
+    private String description;
 
     public String getCode() {
         return code;
@@ -22,5 +25,13 @@ public class Department extends IdEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
