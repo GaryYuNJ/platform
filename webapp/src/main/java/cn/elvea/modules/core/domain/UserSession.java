@@ -1,4 +1,4 @@
-package cn.elvea.modules.core.entity;
+package cn.elvea.modules.core.domain;
 
 import cn.elvea.commons.domain.IdEntity;
 

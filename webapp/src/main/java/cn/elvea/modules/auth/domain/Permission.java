@@ -1,14 +1,16 @@
-package cn.elvea.modules.core.entity;
+package cn.elvea.modules.auth.domain;
+
+import cn.elvea.commons.domain.IdEntity;
 
 import javax.persistence.Table;
 
-@Table(name = "sys_position")
-public class Position extends Entity {
-    // 岗位编号
+@Table(name = "sys_permission")
+public class Permission extends IdEntity {
+    // 权限编号
     private String code;
-    // 岗位标题
+    // 权限标题
     private String title;
-    // 岗位描述
+    // 权限描述
     private String description;
 
     public String getCode() {

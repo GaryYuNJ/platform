@@ -1,16 +1,14 @@
-package cn.elvea.modules.core.entity;
-
-import cn.elvea.commons.domain.IdEntity;
+package cn.elvea.modules.core.domain;
 
 import javax.persistence.Table;
 
-@Table(name = "sys_role")
-public class Role extends IdEntity {
-    // 角色编号
+@Table(name = "sys_department")
+public class Department extends Entity {
+    // 部门编号
     private String code;
-    // 角色标题
+    // 部门标题
     private String title;
-    // 角色描述
+    // 部门描述
     private String description;
 
     public String getCode() {

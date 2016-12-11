@@ -1,14 +1,14 @@
-package cn.elvea.modules.core.entity;
+package cn.elvea.modules.core.domain;
 
 import javax.persistence.Table;
 
-@Table(name = "sys_organization")
-public class Organization extends Entity {
-    // 组织编号
+@Table(name = "sys_position")
+public class Position extends Entity {
+    // 岗位编号
     private String code;
-    // 组织标题
+    // 岗位标题
     private String title;
-    // 组织描述
+    // 岗位描述
     private String description;
 
     public String getCode() {

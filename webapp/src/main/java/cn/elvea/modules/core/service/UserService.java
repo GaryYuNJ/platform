@@ -1,7 +1,7 @@
 package cn.elvea.modules.core.service;
 
 import cn.elvea.commons.service.BaseEntityService;
-import cn.elvea.modules.core.entity.User;
+import cn.elvea.modules.core.domain.User;
 import cn.elvea.modules.core.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 

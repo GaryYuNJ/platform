@@ -1,7 +1,7 @@
 package cn.elvea.modules.core.mapper;
 
 import cn.elvea.commons.persistence.mybatis.BaseEntityMapper;
-import cn.elvea.modules.core.entity.Role;
+import cn.elvea.modules.core.domain.Role;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

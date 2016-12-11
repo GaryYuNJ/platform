@@ -1,8 +1,8 @@
 package cn.elvea.modules.security;
 
 import cn.elvea.commons.utils.EncryptUtils;
-import cn.elvea.modules.core.entity.Role;
-import cn.elvea.modules.core.entity.User;
+import cn.elvea.modules.core.domain.Role;
+import cn.elvea.modules.core.domain.User;
 import cn.elvea.modules.core.service.UserService;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.shiro.authc.AuthenticationException;

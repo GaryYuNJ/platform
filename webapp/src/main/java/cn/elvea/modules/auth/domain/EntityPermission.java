@@ -1,14 +1,14 @@
-package cn.elvea.modules.auth.entity;
+package cn.elvea.modules.auth.domain;
 
 import cn.elvea.commons.domain.IdEntity;
 
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
-@Table(name = "sys_role_permission")
-public class RolePermission extends IdEntity {
-    // 角色ID
-    private Long roleId;
+@Table(name = "sys_entity_permission")
+public class EntityPermission extends IdEntity {
+    // 实体ID
+    private Long entityId;
     // 权限ID
     private Long permissionId;
     // 关联时间
@@ -16,12 +16,12 @@ public class RolePermission extends IdEntity {
     // 关联人
     private Long createdBy;
 
-    public Long getRoleId() {
-        return roleId;
+    public Long getEntityId() {
+        return entityId;
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setEntityId(Long entityId) {
+        this.entityId = entityId;
     }
 
     public Long getPermissionId() {

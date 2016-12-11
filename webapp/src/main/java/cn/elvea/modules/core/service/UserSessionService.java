@@ -1,7 +1,7 @@
 package cn.elvea.modules.core.service;
 
 import cn.elvea.commons.service.BaseEntityService;
-import cn.elvea.modules.core.entity.UserSession;
+import cn.elvea.modules.core.domain.UserSession;
 import cn.elvea.modules.core.mapper.UserSessionMapper;
 import org.apache.shiro.session.Session;
 import org.springframework.stereotype.Service;

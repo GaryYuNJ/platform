@@ -112,9 +112,9 @@ create table sys_role_permission (
     `permission_id` int not null,
     `created_at`    datetime,
     `created_by`    int,
-    constraint fk_sys_entity_permission_entity_id foreign key (role_id) references sys_role (id),
-    constraint fk_sys_entity_permission_permission_id foreign key (permission_id) references sys_permission (id),
-    constraint pk_sys_entity_permission_id primary key (id)
+    constraint fk_sys_role_permission_entity_id foreign key (role_id) references sys_role (id),
+    constraint fk_sys_role_permission_permission_id foreign key (permission_id) references sys_permission (id),
+    constraint pk_sys_role_permission_id primary key (id)
 );
 
 /* 实体-权限关联表 */
@@ -249,4 +249,3 @@ create table sys_resource_access (
     constraint fk_sys_resource_access_access_entity_id foreign key (access_entity_id) references sys_entity (id),
     constraint pk_sys_resource_access_id primary key (id)
 );
-
