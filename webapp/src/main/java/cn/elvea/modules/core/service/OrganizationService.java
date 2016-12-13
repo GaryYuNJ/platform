@@ -7,4 +7,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrganizationService extends BaseEntityService<OrganizationMapper, Organization> {
+    @Override
+    public Integer insert(Organization entity) {
+        return super.insert(entity);
+    }
+
+    @Override
+    public Integer update(Organization entity) {
+        return super.update(entity);
+    }
+
+    @Override
+    public Integer savaOrUpdate(Organization entity) {
+        return super.savaOrUpdate(entity);
+    }
 }

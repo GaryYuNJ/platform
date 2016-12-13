@@ -3,7 +3,7 @@ package cn.elvea.modules.core.domain;
 import javax.persistence.Table;
 
 @Table(name = "sys_position")
-public class Position extends Entity {
+public class Position extends Actor {
     // 岗位编号
     private String code;
     // 岗位标题

@@ -7,4 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class BaseEntityService<M extends BaseEntityMapper<T>, T extends IdEntity> extends BaseService {
     @Autowired
     M mapper;
+
+    public Integer insert(T entity) {
+        return this.mapper.insert(entity);
+    }
+
+    public Integer update(T entity) {
+        return this.mapper.updateByPrimaryKey(entity);
+    }
+
+    public Integer savaOrUpdate(T entity) {
+        if (entity.getId() != null && entity.getId() > 0) {
+            return update(entity);
+        } else {
+            return insert(entity);
+        }
+    }
 }

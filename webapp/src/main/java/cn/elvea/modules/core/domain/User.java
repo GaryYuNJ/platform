@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 import java.util.List;
 
 @Table(name = "sys_user")
-public class User extends Entity {
+public class User extends Actor {
     // 用户名
     private String username;
     // 邮箱

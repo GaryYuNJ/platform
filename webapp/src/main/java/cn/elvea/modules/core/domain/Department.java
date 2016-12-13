@@ -3,7 +3,7 @@ package cn.elvea.modules.core.domain;
 import javax.persistence.Table;
 
 @Table(name = "sys_department")
-public class Department extends Entity {
+public class Department extends Actor {
     // 部门编号
     private String code;
     // 部门标题
