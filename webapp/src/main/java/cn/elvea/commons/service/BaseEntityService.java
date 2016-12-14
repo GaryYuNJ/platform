@@ -9,6 +9,9 @@ public abstract class BaseEntityService<M extends BaseEntityMapper<T>, T extends
     M mapper;
 
     public Integer insert(T entity) {
+        // 生成ID
+        entity.setId(generateNextId());
+
         return this.mapper.insert(entity);
     }
 
@@ -16,11 +19,12 @@ public abstract class BaseEntityService<M extends BaseEntityMapper<T>, T extends
         return this.mapper.updateByPrimaryKey(entity);
     }
 
-    public Integer savaOrUpdate(T entity) {
+    public Integer save(T entity) {
         if (entity.getId() != null && entity.getId() > 0) {
             return update(entity);
         } else {
             return insert(entity);
         }
+
     }
 }

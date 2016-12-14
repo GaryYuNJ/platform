@@ -5,8 +5,18 @@ import cn.elvea.commons.domain.IdEntity;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
-@Table(name = "sys_entity_relation")
-public class EntityRelation extends IdEntity {
+@Table(name = "sys_actor_relation")
+public class ActorRelation extends IdEntity {
+    public static final String R_TYPE_PARENT = "_PARENT_";
+    public static final String R_TYPE_CURRENT = "_CURRENT_";
+
+    public final static String R_ORG_PARENT_ORG = "ORG_PARENT_ORG";
+    public final static String R_DPT_PARENT_DPT = "DPT_PARENT_DPT";
+    public final static String R_PST_PARENT_PST = "PST_PARENT_PST";
+    public final static String R_USR_CURRENT_ORG = "USR_CURRENT_ORG";
+    public final static String R_USR_CURRENT_DPT = "USR_CURRENT_DPT";
+    public final static String R_USR_CURRENT_PST = "USR_CURRENT_PST";
+
     // 实体关联父ID
     private Long parentId;
     // 实体关联子ID

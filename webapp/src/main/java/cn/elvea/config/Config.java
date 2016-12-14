@@ -3,6 +3,7 @@ package cn.elvea.config;
 import cn.elvea.Application;
 import cn.elvea.Constants;
 import cn.elvea.commons.persistence.datasource.DynamicDataSource;
+import cn.elvea.commons.utils.IdWorker;
 import com.alibaba.druid.filter.Filter;
 import com.alibaba.druid.filter.logging.Slf4jLogFilter;
 import com.alibaba.druid.filter.stat.StatFilter;
@@ -150,5 +151,10 @@ public class Config implements TransactionManagementConfigurer {
         filters.add(new StatFilter());
         filters.add(slf4jLogFilter);
         return filters;
+    }
+
+    @Bean
+    public IdWorker idWorker() {
+        return new IdWorker();
     }
 }
