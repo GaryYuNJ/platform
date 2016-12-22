@@ -12,8 +12,9 @@ use platform;
 create table sys_organization (
     `id`          bigint       not null,
     `code`        varchar(150) not null,
-    `title`       varchar(150) not null,
+    `title`       varchar(255) not null,
     `description` varchar(255),
+    `type`        varchar(50) default 'ORG',
     `status`      varchar(50)  not null,
     `created_at`  datetime,
     `created_by`  int,
@@ -28,8 +29,9 @@ create table sys_organization (
 create table sys_department (
     `id`          bigint       not null,
     `code`        varchar(150) not null,
-    `title`       varchar(150) not null,
+    `title`       varchar(255) not null,
     `description` varchar(255),
+    `type`        varchar(50) default 'DPT',
     `status`      varchar(50)  not null,
     `created_at`  datetime,
     `created_by`  int,
@@ -44,8 +46,9 @@ create table sys_department (
 create table sys_position (
     `id`          bigint       not null,
     `code`        varchar(150) not null,
-    `title`       varchar(150) not null,
+    `title`       varchar(255) not null,
     `description` varchar(255),
+    `type`        varchar(50) default 'PST',
     `status`      varchar(50)  not null,
     `created_at`  datetime,
     `created_by`  int,
@@ -62,11 +65,12 @@ create table sys_user (
     `username`            varchar(150) not null,
     `email`               varchar(150) not null,
     `mobile`              varchar(150) not null,
-    `password`            varchar(150) not null,
-    `salt`                varchar(150) not null,
+    `password`            varchar(255) not null,
+    `salt`                varchar(255) not null,
     `nickname`            varchar(255),
     `fullname`            varchar(255),
     `description`         varchar(255),
+    `type`                varchar(50) default 'USR',
     `source`              varchar(50),
     `last_login_status`   varchar(50),
     `last_login_datetime` datetime,
@@ -81,29 +85,17 @@ create table sys_user (
 );
 
 /* 实体表 */
-create view sys_v_actor (id, type, status) as
-    select
-        id,
-        'ORG',
-        status
+create view sys_v_actor (id, type, status, uid) as
+    select id, type, code, status
     from sys_organization
     union all
-    select
-        id,
-        'DPT',
-        status
+    select id, type, code, status
     from sys_department
     union all
-    select
-        id,
-        'PST',
-        status
+    select id, type, code, status
     from sys_position
     union all
-    select
-        id,
-        'USR',
-        status
+    select id, type, username, status
     from sys_user;
 
 /* 实体关联 */
@@ -119,10 +111,12 @@ create table sys_actor_relation (
     constraint pk_sys_actor_relation_id primary key (id)
 );
 
+create index ix_sys_actor_relation
+    on sys_actor_relation (type, parent_id, child_id, parent_ind);
+
 /* 用户回话 */
 create table sys_user_session (
     `id`                   bigint       not null,
-    `user_id`              int          not null,
     `session_id`           varchar(255) not null,
     `username`             varchar(255) null,
     `host`                 varchar(255) not null,
@@ -130,7 +124,6 @@ create table sys_user_session (
     `last_access_datetime` datetime,
     `start_datetime`       datetime,
     `end_datetime`         datetime,
-    constraint fk_sys_user_session_user_id foreign key (user_id) references sys_user (id),
     constraint pk_sys_user_session_id primary key (id)
 );
 /* 实体-组织架构相关 --------------------------------------------------------------------------------------------------- */
