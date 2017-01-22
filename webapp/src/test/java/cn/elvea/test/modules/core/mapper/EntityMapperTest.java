@@ -1,6 +1,6 @@
 package cn.elvea.test.modules.core.mapper;
 
-import cn.elvea.core.user.mapper.ActorMapper;
+import cn.elvea.core.actor.mapper.ActorMapper;
 import cn.elvea.test.core.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

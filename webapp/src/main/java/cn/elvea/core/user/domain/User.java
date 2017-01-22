@@ -1,5 +1,7 @@
 package cn.elvea.core.user.domain;
 
+import cn.elvea.core.actor.domain.Actor;
+import cn.elvea.core.auth.domain.Role;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.google.common.collect.Lists;
 

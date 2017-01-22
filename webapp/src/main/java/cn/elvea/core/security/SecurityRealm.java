@@ -1,7 +1,7 @@
 package cn.elvea.core.security;
 
 import cn.elvea.commons.utils.EncryptUtils;
-import cn.elvea.core.user.domain.Role;
+import cn.elvea.core.auth.domain.Role;
 import cn.elvea.core.user.domain.User;
 import cn.elvea.core.user.service.UserService;
 import org.apache.logging.log4j.util.Strings;
