@@ -1,10 +1,10 @@
 package cn.elvea.test.security;
 
 import cn.elvea.commons.utils.EncryptUtils;
-import cn.elvea.modules.security.SecurityConstants;
-import cn.elvea.modules.security.SecurityToken;
-import cn.elvea.modules.security.SecurityUser;
-import cn.elvea.modules.security.SecurityUtils;
+import cn.elvea.core.security.SecurityConstants;
+import cn.elvea.core.security.SecurityToken;
+import cn.elvea.core.security.SecurityUser;
+import cn.elvea.core.security.SecurityUtils;
 import cn.elvea.test.core.BaseTest;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;

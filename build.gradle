@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.4.2.RELEASE'
+        springBootVersion = '1.4.3.RELEASE'
         springDependencyManagementPluginVersion = '0.6.1.RELEASE'
     }
 
@@ -32,17 +32,17 @@ allprojects {
     ext {
         springBootVersion = '1.4.2.RELEASE'
 
-        assertjVersion = '3.4.1'
+        assertjVersion = '3.6.1'
         sitemeshVersion = '3.0.1'
-        guavaVersion = '20.0'
+        guavaVersion = '21.0'
         shiroVersion = '1.4.0-RC2'
         druidVersion = '1.0.27'
         okHttpVersion = '3.5.0'
-        mybatisVersion = '3.4.1'
+        mybatisVersion = '3.4.2'
         mybatisSpringVersion = '1.3.0'
-        mybatisSpringBootVersion = '1.1.1'
+        mybatisSpringBootVersion = '1.2.0'
         mybatisGeneratorVersion = '1.3.5'
-        mybatisMapperVersion = '3.3.9'
+        mybatisPlusVersion = '2.0.1'
 
         commonsIoVersion = '2.5'
         commonsLangVersion = '3.5'
@@ -60,7 +60,7 @@ allprojects {
     ext['spring.version'] = '4.3.5.RELEASE'
     ext['spring-session.version'] = '1.3.0.RELEASE'
     ext['spring-security.version'] = '4.2.1.RELEASE'
-    ext['spring-data-releasetrain.version'] = 'Hopper-SR5'
+    ext['spring-data-releasetrain.version'] = 'Hopper-SR6'
     ext['hibernate-validator.version'] = "5.3.4.Final"
     ext['mysql.version'] = '5.1.40'
     ext['slf4j.version'] = '1.7.22'
@@ -96,7 +96,6 @@ allprojects {
         compile.exclude module: 'xml-apis'
         compile.exclude module: 'h2'
         compile.exclude module: 'spring-boot-starter-logging'
-        compile.exclude module: 'spring-boot-starter-tomcat'
         compile.exclude module: 'hibernate-entitymanager'
         compile.exclude module: 'ehcache-core'
     }
@@ -161,8 +160,8 @@ project("webapp") {
         // MyBatis
         compile("org.mybatis:mybatis:${mybatisVersion}")
         compile("org.mybatis:mybatis-spring:${mybatisSpringVersion}")
-        compile("tk.mybatis:mapper:${mybatisMapperVersion}")
         compile("org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}")
+        compile("com.baomidou:mybatis-plus:${mybatisPlusVersion}")
 
         // javax
         compile("javax.servlet:jstl:${javaxJstlApiVersion}")
@@ -170,10 +169,8 @@ project("webapp") {
         providedCompile("javax.servlet.jsp:javax.servlet.jsp-api:${javaxJspApiVersion}")
 
         // tomcat
-        // providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-        // providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
-        // jetty
-        compile('org.springframework.boot:spring-boot-starter-jetty')
+        providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+        providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
 
         // test
         testCompile("org.springframework.boot:spring-boot-starter-test")

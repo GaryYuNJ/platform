@@ -16,7 +16,7 @@ public abstract class BaseEntityService<M extends BaseEntityMapper<T>, T extends
     }
 
     public Integer update(T entity) {
-        return this.mapper.updateByPrimaryKey(entity);
+        return this.mapper.updateById(entity);
     }
 
     public Integer save(T entity) {

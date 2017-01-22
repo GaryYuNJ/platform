@@ -1,10 +1,10 @@
 package cn.elvea.test.modules.core.service;
 
 import cn.elvea.Constants;
-import cn.elvea.modules.core.domain.ActorRelation;
-import cn.elvea.modules.core.domain.Organization;
-import cn.elvea.modules.core.service.ActorService;
-import cn.elvea.modules.core.service.OrganizationService;
+import cn.elvea.core.user.domain.ActorRelation;
+import cn.elvea.core.user.domain.Organization;
+import cn.elvea.core.user.service.ActorService;
+import cn.elvea.core.user.service.OrganizationService;
 import cn.elvea.test.core.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

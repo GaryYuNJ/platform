@@ -1,9 +1,9 @@
 package cn.elvea.config;
 
-import cn.elvea.modules.security.*;
-import cn.elvea.modules.security.filter.ApiAuthFilter;
-import cn.elvea.modules.security.filter.FormAuthFilter;
-import cn.elvea.modules.security.filter.SsoAuthFilter;
+import cn.elvea.core.security.*;
+import cn.elvea.core.security.filter.ApiAuthFilter;
+import cn.elvea.core.security.filter.FormAuthFilter;
+import cn.elvea.core.security.filter.SsoAuthFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.RememberMeManager;
 import org.apache.shiro.realm.AuthorizingRealm;

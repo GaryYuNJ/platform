@@ -1,13 +1,11 @@
 package cn.elvea.commons.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.baomidou.mybatisplus.annotations.TableId;
+
 import java.io.Serializable;
 
 public class IdEntity implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId
     private Long id;
 
     public Long getId() {

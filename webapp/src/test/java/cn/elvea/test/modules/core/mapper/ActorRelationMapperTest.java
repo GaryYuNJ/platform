@@ -1,6 +1,6 @@
 package cn.elvea.test.modules.core.mapper;
 
-import cn.elvea.modules.core.mapper.ActorRelationMapper;
+import cn.elvea.core.user.mapper.ActorRelationMapper;
 import cn.elvea.test.core.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
