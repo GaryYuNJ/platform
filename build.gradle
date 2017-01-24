@@ -30,7 +30,11 @@ allprojects {
     }
 
     ext {
-        springBootVersion = '1.4.2.RELEASE'
+        springVersion = '4.3.5.RELEASE'
+        springBootVersion = '1.4.3.RELEASE'
+        springDataVersion = 'Hopper-SR6'
+        springSecurityVersion = '4.2.1.RELEASE'
+        springSessionVersion = '1.3.0.RELEASE'
 
         assertjVersion = '3.6.1'
         sitemeshVersion = '3.0.1'
@@ -57,23 +61,22 @@ allprojects {
     }
 
     // 覆盖spring-boot-dependencies的版本定义,保持最新版本
-    ext['spring.version'] = '4.3.5.RELEASE'
-    ext['spring-session.version'] = '1.3.0.RELEASE'
-    ext['spring-security.version'] = '4.2.1.RELEASE'
-    ext['spring-data-releasetrain.version'] = 'Hopper-SR6'
+    ext['spring.version'] = "${springVersion}"
+    ext['spring-session.version'] = "${springSessionVersion}"
+    ext['spring-security.version'] = "${springSecurityVersion}"
+    ext['spring-data-releasetrain.version'] = "${springDataVersion}"
     ext['hibernate-validator.version'] = "5.3.4.Final"
     ext['mysql.version'] = '5.1.40'
     ext['slf4j.version'] = '1.7.22'
     ext['log4j2.version'] = '2.7'
     ext['jackson.version'] = '2.8.5'
     ext['jedis.version'] = '2.9.0'
-    ext['jersey.version'] = '2.24.1'
+    ext['jersey.version'] = '2.25'
     ext['ehcache.version'] = '2.10.3'
     ext['joda-time.version'] = '2.9.6'
     ext['javassist.version'] = '3.21.0-GA'
     // server
-    ext['tomcat.version'] = '8.5.9'
-    ext['jetty.version'] = '9.3.14.v20161028'
+    ext['tomcat.version'] = '8.5.11'
     // 覆盖spring-boot-dependencies的版本定义,保持最新版本
 
     apply plugin: 'io.spring.dependency-management'
@@ -123,7 +126,7 @@ project("webapp") {
     }
 
     dependencies {
-        // Spring Boot & Spring Session
+        // ====== Spring Boot & Spring Session ======
         compile("org.springframework.boot:spring-boot-starter-jdbc")
         compile("org.springframework.boot:spring-boot-starter-web")
         compile("org.springframework.boot:spring-boot-starter-log4j2")
@@ -131,6 +134,10 @@ project("webapp") {
         compile("org.springframework.boot:spring-boot-starter-aop")
         compile("org.springframework.session:spring-session")
 
+        // ====== Apache ======
+        // Shrio
+        compile("org.apache.shiro:shiro-spring:${shiroVersion}")
+        compile("org.apache.shiro:shiro-web:${shiroVersion}")
         // Apache Commons
         compile("org.apache.commons:commons-lang3:${commonsLangVersion}")
         compile("commons-fileupload:commons-fileupload:${commonsFileuploadVersion}")
@@ -138,12 +145,17 @@ project("webapp") {
         compile("commons-beanutils:commons-beanutils:${commonsBeanutilsVersion}")
         compile("commons-codec:commons-codec:${commonsCodecVersion}")
 
-        // Database & DataSource
+        // ====== Database & DataSource ======
         compile("mysql:mysql-connector-java")
         compile("redis.clients:jedis")
         compile("com.alibaba:druid:${druidVersion}")
+        // MyBatis
+        compile("org.mybatis:mybatis:${mybatisVersion}")
+        compile("org.mybatis:mybatis-spring:${mybatisSpringVersion}")
+        compile("org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}")
+        compile("com.baomidou:mybatis-plus:${mybatisPlusVersion}")
 
-        // 3rd party
+        // ====== 3rd party ======
         compile("com.fasterxml.jackson.core:jackson-core")
         compile("com.fasterxml.jackson.core:jackson-annotations")
         compile("com.fasterxml.jackson.core:jackson-databind")
@@ -153,26 +165,16 @@ project("webapp") {
         compile("org.sitemesh:sitemesh:${sitemeshVersion}")
         compile("com.google.guava:guava:${guavaVersion}")
 
-        // Shrio
-        compile("org.apache.shiro:shiro-spring:${shiroVersion}")
-        compile("org.apache.shiro:shiro-web:${shiroVersion}")
-
-        // MyBatis
-        compile("org.mybatis:mybatis:${mybatisVersion}")
-        compile("org.mybatis:mybatis-spring:${mybatisSpringVersion}")
-        compile("org.mybatis.generator:mybatis-generator-core:${mybatisGeneratorVersion}")
-        compile("com.baomidou:mybatis-plus:${mybatisPlusVersion}")
-
-        // javax
+        // ====== Javax ======
         compile("javax.servlet:jstl:${javaxJstlApiVersion}")
         providedCompile("javax.servlet:javax.servlet-api:${javaxServletApiVersion}")
         providedCompile("javax.servlet.jsp:javax.servlet.jsp-api:${javaxJspApiVersion}")
 
-        // tomcat
+        // ====== Tomcat ======
         providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
         providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
 
-        // test
+        // ====== Test ======
         testCompile("org.springframework.boot:spring-boot-starter-test")
     }
 }

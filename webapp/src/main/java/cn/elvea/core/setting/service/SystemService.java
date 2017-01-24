@@ -1,4 +1,4 @@
-package cn.elvea.core.settings.service;
+package cn.elvea.core.setting.service;
 
 import cn.elvea.commons.service.BaseService;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,4 @@ public class SystemService extends BaseService {
     public void init() {
 
     }
-
-
 }

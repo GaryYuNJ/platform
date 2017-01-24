@@ -1,5 +1,6 @@
-package cn.elvea.core.user.controller;
+package cn.elvea.core.auth.controller;
 
+import cn.elvea.core.security.SecurityUtils;
 import cn.elvea.core.security.exception.IncorrectCaptchaException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.DisabledAccountException;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class LoginController {
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+public class AuthController {
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
@@ -54,5 +55,11 @@ public class LoginController {
             msg = "Username or password is incorrect.";
         }
         return msg;
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(@RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM) String username, HttpServletRequest request, Model model) {
+        SecurityUtils.getSubject().logout();
+        return "login";
     }
 }
