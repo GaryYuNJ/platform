@@ -1,19 +1,21 @@
 {
     "name" : "webapp",
-    "version" : "0.0.1",
+    "version" : "1.0.0",
     "private" : true,
     "devDependencies" : {
+        "bower" : "^1.8.0",
         "del" : "~*",
-        "gulp" : "~*",
-        "gulp-minify-css" : "~*",
+        "gulp" : "^3.9.1",
         "gulp-bower" : "~*",
+        "gulp-concat" : "~*",
+        "gulp-connect" : "~*",
+        "gulp-ejs" : "~*",
         "gulp-less" : "~*",
+        "gulp-minify-css" : "~*",
         "gulp-rename" : "~*",
+        "gulp-sequence" : "~*",
         "gulp-uglify" : "~*",
         "gulp-watch" : "~*",
-        "gulp-connect" : "~*",
-        "gulp-sequence" : "~*",
-        "gulp-ejs" : "~*",
-        "gulp-concat" : "~*"
+        "main-bower-files" : "~*"
     }
 }

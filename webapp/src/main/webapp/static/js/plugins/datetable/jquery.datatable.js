@@ -363,7 +363,7 @@
     };
 
     // 初始化列表
-    $.fn.table = function(p) {
+    $.fn.datatable = function(p) {
         $(this).each(function() {
             $.createTable(this, p);
         });

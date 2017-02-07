@@ -143,13 +143,25 @@ CREATE TABLE `sys_user` (
 
 /* 实体表 */
 CREATE VIEW `sys_v_actor` (`id`, `type`, `status`, `uid`) AS
-    SELECT `id`, `type`, `code`, `status`
+    SELECT
+        `id`,
+        `type`,
+        `code`,
+        `status`
     FROM `sys_department`
     UNION ALL
-    SELECT `id`, `type`, `code`, `status`
+    SELECT
+        `id`,
+        `type`,
+        `code`,
+        `status`
     FROM `sys_position`
     UNION ALL
-    SELECT `id`, `type`, `username`, `status`
+    SELECT
+        `id`,
+        `type`,
+        `username`,
+        `status`
     FROM `sys_user`;
 
 /* 实体关联 */
@@ -370,3 +382,20 @@ CREATE TABLE `sys_system_setting` (
     CONSTRAINT `pk_sys_system_setting_id` PRIMARY KEY (`id`)
 );
 /* 系统设置 ---------------------------------------------------------------------------------------------------------- */
+
+
+/* 基础组织架构数据 */
+
+INSERT INTO `sys_organization` (`id`, `code`, `title`, `status`) VALUES (1, 'Root', 'Top Organization', 'ON');
+
+INSERT INTO `sys_department` (`id`, `org_id`, `code`, `title`, `status`) VALUES (2, 1, 'Root', 'All Department', 'ON');
+
+INSERT INTO `sys_department` (`id`, `org_id`, `code`, `title`, `status`) VALUES (3, 1, 'RecyleBin', 'Recyle Bin', 'ON');
+
+INSERT INTO `sys_position` (`id`, `org_id`, `code`, `title`, `status`) VALUES (4, 1, 'Root', 'All Position', 'ON');
+
+INSERT INTO `sys_position` (`id`, `org_id`, `code`, `title`, `status`)
+VALUES (5, 1, 'Unspecified', 'Unspecified', 'ON');
+
+INSERT INTO `sys_user` (`id`, `org_id`, `username`, `email`, `mobile`, `password`, `salt`, `status`)
+VALUES (6, 1, 'root', 'root@elvea.cn', '13800138000', '', '', 'ON');

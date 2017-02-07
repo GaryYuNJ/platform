@@ -5,7 +5,7 @@
     <head>
         <title><sitemesh:write property='title'/></title>
         <%@ include file="../commons/meta.jsp" %>
-        <%@ include file="../commons/meta.learner.jsp" %>
+        <%@ include file="../commons/meta.site.jsp" %>
         <sitemesh:write property='head'/>
     </head>
     <body>

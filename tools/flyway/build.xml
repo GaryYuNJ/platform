@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="generator" basedir=".">
+    <!-- 加载配置文件 -->
+    <property file="build.properties"/>
+
+    <!-- Classpath -->
+    <path id="libs">
+        <fileset dir="./libs"/>
+    </path>
+
+    <!-- 属性定义 -->
+    <property name="build" value="${basedir}/build"/>
+
+    <property name="generated.source.dir" value="${build}"/>
+    <property name="model.package" value="${model.package}"/>
+    <property name="mapper.package" value="${model.package}"/>
+    <property name="sql.mapper.package" value="${model.package}"/>
+    <property name="database.driver" value="${database.driver}"/>
+    <property name="database.url" value="${database.url}"/>
+    <property name="database.user" value="${database.user}"/>
+    <property name="database.password" value="${database.password}"/>
+
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${build}"/>
+    </target>
+
+    <target name="generator" description="Generate MyBatis Mapper &amp; XML" depends="init">
+        <taskdef name="generator" classname="org.mybatis.generator.ant.GeneratorAntTask">
+            <classpath refid="libs"/>
+        </taskdef>
+
+        <generator overwrite="true" configfile="${basedir}/config/generator-config.xml" verbose="false">
+            <propertyset>
+                <propertyref name="database.driver"/>
+                <propertyref name="database.url"/>
+                <propertyref name="database.user"/>
+                <propertyref name="database.password"/>
+                <propertyref name="generated.source.dir"/>
+                <propertyref name="model.package"/>
+                <propertyref name="mapper.package"/>
+                <propertyref name="sql.mapper.package"/>
+            </propertyset>
+        </generator>
+    </target>
+
+    <target name="cleanup">
+        <delete dir="${build}" includeEmptyDirs="true"/>
+    </target>
+</project>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@ include file="../commons/meta.table.jsp" %>
+        <%@ include file="../commons/meta.datatable.jsp" %>
 
         <script type="text/javascript">
             $(function() {

@@ -29,10 +29,23 @@ gulp.task('libs', function() {
 
     // jQuery Migrate
     gulp.src(bower_source_dir + '/jquery-migrate/jquery-migrate.js')
-        .pipe(gulp.dest(bower_target_dir + '/jquery-migrate'));
+        .pipe(gulp.dest(bower_target_dir + '/jquery'));
 
     gulp.src(bower_source_dir + '/jquery-migrate/jquery-migrate.min.js')
-        .pipe(gulp.dest(bower_target_dir + '/jquery-migrate'));
+        .pipe(gulp.dest(bower_target_dir + '/jquery'));
+
+    // jQuery UI
+    gulp.src(bower_source_dir + '/jquery-ui/core.js')
+        .pipe(gulp.dest(bower_target_dir + '/jquery-ui'));
+
+    gulp.src(bower_source_dir + '/jquery-ui/minified/core.min.js')
+        .pipe(gulp.dest(bower_target_dir + '/jquery-ui'));
+
+    gulp.src(bower_source_dir + '/jquery-ui/widget.js')
+        .pipe(gulp.dest(bower_target_dir + '/jquery-ui'));
+
+    gulp.src(bower_source_dir + '/jquery-ui/minified/widget.min.js')
+        .pipe(gulp.dest(bower_target_dir + '/jquery-ui'));
 
     // jQuery Form
     gulp.src(bower_source_dir + '/jquery-form/jquery.form.js')
@@ -43,6 +56,10 @@ gulp.task('libs', function() {
         .pipe(gulp.dest(bower_target_dir + '/jquery-plugin'));
 
     gulp.src(bower_source_dir + '/jquery-validation/dist/jquery.validate.min.js')
+        .pipe(gulp.dest(bower_target_dir + '/jquery-plugin'));
+
+    // slimscroll
+    gulp.src(bower_source_dir + '/slimscroll/jquery.slimscroll.min.js')
         .pipe(gulp.dest(bower_target_dir + '/jquery-plugin'));
 
     // JsRender
@@ -59,25 +76,6 @@ gulp.task('libs', function() {
     gulp.src(bower_source_dir + '/bootstrap/dist/**')
         .pipe(gulp.dest(bower_target_dir + '/bootstrap'));
 
-    // smalot-bootstrap-datetimepicker
-    gulp.src(bower_source_dir + '/smalot-bootstrap-datetimepicker/css/**')
-        .pipe(gulp.dest(bower_target_dir + '/bootstrap-datetimepicker/css'));
-
-    gulp.src(bower_source_dir + '/smalot-bootstrap-datetimepicker/js/**')
-        .pipe(gulp.dest(bower_target_dir + '/bootstrap-datetimepicker/js'));
-
-    // bootstrap-select
-    gulp.src(bower_source_dir + '/bootstrap-select/dist/**')
-        .pipe(gulp.dest(bower_target_dir + '/bootstrap-select'));
-
-    // bootstrap-switch
-    gulp.src(bower_source_dir + '/bootstrap-switch/dist/**')
-        .pipe(gulp.dest(bower_target_dir + '/bootstrap-switch'));
-
-    // bootstrap-table
-    gulp.src(bower_source_dir + '/bootstrap-table/dist/**')
-        .pipe(gulp.dest(bower_target_dir + '/bootstrap-table'));
-
     // Font-awesome
     gulp.src(bower_source_dir + '/font-awesome/css/**')
         .pipe(gulp.dest(bower_target_dir + '/font-awesome/css'));
@@ -85,35 +83,74 @@ gulp.task('libs', function() {
     gulp.src(bower_source_dir + '/font-awesome/fonts/**')
         .pipe(gulp.dest(bower_target_dir + '/font-awesome/fonts'));
 
+    // bootstrap-datapicker
+    gulp.src(bower_source_dir + '/bootstrap-datepicker/dist/css/**')
+        .pipe(gulp.dest(bower_target_dir + '/bootstrap-datepicker/css'));
+
+    gulp.src(bower_source_dir + '/bootstrap-datepicker/dist/js/**')
+        .pipe(gulp.dest(bower_target_dir + '/bootstrap-datepicker/js'));
+
+    gulp.src(bower_source_dir + '/bootstrap-datepicker/dist/locales/**')
+        .pipe(gulp.dest(bower_target_dir + '/bootstrap-datepicker/locales'));
+
+    // file-upload
+    gulp.src(bower_source_dir + '/blueimp-file-upload/css/**')
+        .pipe(gulp.dest(bower_target_dir + '/jquery-file-upload/css'));
+
+    gulp.src(bower_source_dir + '/blueimp-file-upload/js/**')
+        .pipe(gulp.dest(bower_target_dir + '/jquery-file-upload/js'));
+
+    gulp.src(bower_source_dir + '/blueimp-file-upload/img/**')
+        .pipe(gulp.dest(bower_target_dir + '/jquery-file-upload/img'));
+
     // ztree
     gulp.src(bower_source_dir + '/z-tree.v3/css/**')
         .pipe(gulp.dest(bower_target_dir + '/ztree/css'));
 
     gulp.src(bower_source_dir + '/z-tree.v3/js/**')
         .pipe(gulp.dest(bower_target_dir + '/ztree/js'));
+
+    // echarts
+    gulp.src(bower_source_dir + '/echarts/dist/**')
+        .pipe(gulp.dest(bower_target_dir + '/echarts'));
+
+    // admin-lte
+    gulp.src(bower_source_dir + '/admin-lte/dist/css/**')
+        .pipe(gulp.dest(bower_target_dir + '/admin-lte/css'));
+
+    gulp.src(bower_source_dir + '/admin-lte/dist/js/app.js')
+        .pipe(gulp.dest(bower_target_dir + '/admin-lte/js'));
+
+    gulp.src(bower_source_dir + '/admin-lte/dist/js/app.min.js')
+        .pipe(gulp.dest(bower_target_dir + '/admin-lte/js'));
+
+    // html5shiv
+    gulp.src(bower_source_dir + '/html5shiv/dist/html5shiv.min.js')
+        .pipe(gulp.dest(bower_target_dir + '/html5shiv'));
+
+    // respond
+    gulp.src(bower_source_dir + '/respond/dest/respond.min.js')
+        .pipe(gulp.dest(bower_target_dir + '/respond'));
+
+    // pace
+    gulp.src(bower_source_dir + '/pace/pace*.js')
+        .pipe(gulp.dest(bower_target_dir + '/pace'));
+
+    gulp.src(bower_source_dir + '/pace/themes/blue/*')
+        .pipe(gulp.dest(bower_target_dir + '/pace/themes/blue'));
+
+    gulp.src(bower_source_dir + '/pace/themes/green/*')
+        .pipe(gulp.dest(bower_target_dir + '/pace/themes/green'));
+
+    // select2
+    gulp.src(bower_source_dir + '/select2/dist/**')
+        .pipe(gulp.dest(bower_target_dir + '/select2'));
 });
+
 gulp.task('clean', function(cb) {
     del([
-        bower_source_dir
+        bower_source_dir, bower_target_dir
     ], cb);
 });
-
-gulp.task('prototype-js', function() {
-    watch('public/js/**/*.js', function() {
-        gulp.src('public/js/**/*.js')
-            .pipe(uglify())
-            .pipe(gulp.dest("public/js"))
-            .pipe(connect.reload())
-    });
-});
-
-gulp.task('prototype-server', function() {
-    connect.server({
-        root : 'src/main/webapp',
-        livereload : true
-    });
-});
-
-gulp.task('prototype', ['prototype-js', 'prototype-server']);
 
 gulp.task('default', sequence('bower', 'libs'));
