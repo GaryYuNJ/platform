@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @AutoConfigureAfter(Config.class)
-@MapperScan("com.sunlearning.**.mapper")
+@MapperScan("cn.elvea.**.mapper")
 public class MyBatisConfig {
     @Autowired
     DataSource dataSource;

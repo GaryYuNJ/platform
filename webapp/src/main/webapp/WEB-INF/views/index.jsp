@@ -4,16 +4,11 @@
 <html>
 <head>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
         })
     </script>
 </head>
 <body>
-<div class="row">
-    <div class="col-lg-3">
-    </div>
-    <div class="col-lg-6">
-    </div>
-</div>
+INDEX
 </body>
 </html>
