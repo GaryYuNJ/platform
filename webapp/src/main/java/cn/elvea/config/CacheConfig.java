@@ -11,9 +11,11 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
 
 @Configuration
 @EnableCaching
+@EnableSpringHttpSession
 public class CacheConfig {
     @Autowired
     private Application application;

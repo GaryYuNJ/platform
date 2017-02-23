@@ -16,7 +16,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.apache.shiro.web.session.mgt.ServletContainerSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
@@ -71,7 +71,7 @@ public class WebSecurityConfig {
 
     @Bean(name = "sessionManager")
     public SessionManager sessionManager() {
-        return new DefaultWebSessionManager();
+        return new ServletContainerSessionManager();
     }
 
     @Bean(name = "realm")
