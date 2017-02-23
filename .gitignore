@@ -2,6 +2,7 @@
 .idea
 .gradle
 .iml
+out
 /**/bower_components
 /**/node_modules
 /**/build
