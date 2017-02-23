@@ -117,8 +117,8 @@ allprojects {
         compile.exclude module: 'xml-apis'
         compile.exclude module: 'h2'
         compile.exclude module: 'spring-boot-starter-logging'
-        compile.exclude module: 'hibernate-entitymanager'
         compile.exclude module: 'ehcache-core'
+        compile.exclude module: 'persistence-api'
     }
 
     defaultTasks = ['clean', 'build']
@@ -144,15 +144,17 @@ project("webapp") {
     }
 
     dependencies {
-        // ====== Spring Boot & Spring Session ======
+        // Spring & Spring Boot & Spring Session & Spring Security
         compile("org.springframework.boot:spring-boot-starter-jdbc")
         compile("org.springframework.boot:spring-boot-starter-web")
         compile("org.springframework.boot:spring-boot-starter-log4j2")
         compile("org.springframework.boot:spring-boot-starter-data-redis")
         compile("org.springframework.boot:spring-boot-starter-aop")
+        compile("org.springframework.boot:spring-boot-starter-cache")
+        compile("org.springframework.boot:spring-boot-devtools")
         compile("org.springframework.session:spring-session")
 
-        // ====== Apache ======
+        // Apache Commons & Shiro
         // Shrio
         compile("org.apache.shiro:shiro-spring:${shiroVersion}")
         compile("org.apache.shiro:shiro-web:${shiroVersion}")
@@ -187,16 +189,16 @@ project("webapp") {
         compile("org.sitemesh:sitemesh:${sitemeshVersion}")
         compile("com.google.guava:guava:${guavaVersion}")
 
-        // ====== Javax ======
+        // javax
         compile("javax.servlet:jstl:${javaxJstlApiVersion}")
         providedCompile("javax.servlet:javax.servlet-api:${javaxServletApiVersion}")
         providedCompile("javax.servlet.jsp:javax.servlet.jsp-api:${javaxJspApiVersion}")
 
-        // ====== Tomcat ======
+        // tomcat
         providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
         providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
 
-        // ====== Test ======
+        // test
         testCompile("org.springframework.boot:spring-boot-starter-test")
     }
 }

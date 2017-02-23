@@ -13,12 +13,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-md-3 sidebar">
-                    <%@ include file="../include/admin/sidebar.jsp" %>
+                    <%@ include file="../include/sidebar.jsp" %>
                 </div>
                 <div class="col-lg-9 col-lg-offset-3 col-md-9 col-md-offset-3 main">
-                    <%@ include file="../include/admin/breadcrumb.jsp" %>
                     <sitemesh:write property='body'/>
                 </div>
+                <%@ include file="../include/control-sidebar.jsp" %>
             </div>
         </div>
     </body>

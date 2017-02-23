@@ -1,15 +1,16 @@
 package cn.elvea.config;
 
-import cn.elvea.core.security.*;
+import cn.elvea.core.security.SecurityConstants;
+import cn.elvea.core.security.SecurityDefinitionSource;
+import cn.elvea.core.security.SecurityRealm;
+import cn.elvea.core.security.SecurityToken;
 import cn.elvea.core.security.filter.ApiAuthFilter;
 import cn.elvea.core.security.filter.FormAuthFilter;
 import cn.elvea.core.security.filter.SsoAuthFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.RememberMeManager;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.mgt.ValidatingSessionManager;
-import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
-import org.apache.shiro.session.mgt.eis.SessionDAO;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
@@ -69,22 +70,8 @@ public class WebSecurityConfig {
     }
 
     @Bean(name = "sessionManager")
-    public ValidatingSessionManager sessionManager() {
-        logger.debug("create session manager.");
-
-        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        sessionManager.setGlobalSessionTimeout(1800000);
-        sessionManager.setSessionDAO(shiroSessionDao());
-        return sessionManager;
-    }
-
-    @Bean(name = "shiroSessionDao")
-    public SessionDAO shiroSessionDao() {
-        logger.debug("create session dao.");
-
-        SecuritySessionDao sessionDao = new SecuritySessionDao();
-        sessionDao.setSessionIdGenerator(new JavaUuidSessionIdGenerator());
-        return sessionDao;
+    public SessionManager sessionManager() {
+        return new DefaultWebSessionManager();
     }
 
     @Bean(name = "realm")

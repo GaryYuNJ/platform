@@ -8,13 +8,14 @@
         <%@ include file="../commons/meta.site.jsp" %>
         <sitemesh:write property='head'/>
     </head>
-    <body>
-        <%@ include file="../include/learner/nav.jsp" %>
+    <body class="hold-transition skin-blue layout-top-nav">
+        <%@ include file="../include/site/nav.jsp" %>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 main">
                     <sitemesh:write property='body'/>
                 </div>
+                <%@ include file="../include/control-sidebar.jsp" %>
             </div>
         </div>
     </body>

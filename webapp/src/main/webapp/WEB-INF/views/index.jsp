@@ -2,13 +2,13 @@
 <%@ include file="./commons/taglibs.jsp" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <script type="text/javascript">
-        $(document).ready(function () {
-        })
-    </script>
-</head>
-<body>
-INDEX
-</body>
+    <head>
+        <script type="text/javascript">
+            $(document).ready(function() {
+            })
+        </script>
+    </head>
+    <body>
+        123
+    </body>
 </html>

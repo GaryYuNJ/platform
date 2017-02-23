@@ -13,9 +13,9 @@
 
     <loggers>
         <logger name="cn.elvea" level="DEBUG"/>
-        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.springframework" level="DEBUG"/>
         <logger name="org.hibernate" level="WARN"/>
-        <logger name="org.apache.shiro" level="WARN"/>
+        <logger name="org.apache.shiro" level="DEBUG"/>
 
         <Root level="WARN">
             <AppenderRef ref="Console"/>
