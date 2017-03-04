@@ -5,7 +5,7 @@
 
     <!-- Classpath -->
     <path id="libs">
-        <fileset dir="./libs"/>
+        <fileset dir="../libs"/>
     </path>
 
     <!-- 属性定义 -->

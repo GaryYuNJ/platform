@@ -2,6 +2,7 @@ buildscript {
     ext {
         springBootVersion = '1.5.2.RELEASE'
         springDependencyManagementPluginVersion = '1.0.0.RELEASE'
+        flywayVersion = '4.1.1'
     }
 
     repositories {
@@ -16,6 +17,7 @@ buildscript {
     dependencies {
         classpath("io.spring.gradle:dependency-management-plugin:${springDependencyManagementPluginVersion}")
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.com.boxfuse.client:flyway-release:${flywayVersion}")
     }
 }
 
@@ -62,6 +64,7 @@ allprojects {
         ehcacheVersion = '2.10.3'
         jodatimeVersion = '2.9.7'
         javassistVersion = '3.21.0-GA'
+        flywayVersion = '4.1.1'
 
         commonsIoVersion = '2.5'
         commonsLangVersion = '3.5'
@@ -133,6 +136,7 @@ project("webapp") {
     apply plugin: 'war'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'application'
+    apply plugin: "org.flywaydb.flyway"
 
     mainClassName = "cn.elvea.Initializer"
 
